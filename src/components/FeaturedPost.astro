@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, heroImage } = post.data;
+const href = `/blog/${post.id}/`;
+---
+
+<a class="featured-post" href={href}>
+	{
+		heroImage && (
+			<div class="featured-image">
+				<Image src={heroImage} alt={title} width={720} height={360} />
+			</div>
+		)
+	}
+	<div class="featured-body">
+		<span class="featured-label">Featured</span>
+		<h2 class="featured-title">{title}</h2>
+		<p class="featured-description">{description}</p>
+		<span class="featured-cta">Read post →</span>
+	</div>
+</a>
+
+<style>
+	.featured-post {
+		display: block;
+		margin-bottom: 2.5em;
+		border: 2px solid var(--accent);
+		border-radius: 8px;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		transition: box-shadow 0.2s;
+	}
+	.featured-post:hover {
+		box-shadow: var(--box-shadow);
+		color: inherit;
+	}
+	/* Mobile / vertical tablet: hero banner image on top */
+	.featured-image img {
+		display: block;
+		width: 100%;
+		height: 220px;
+		object-fit: cover;
+		border-radius: 0;
+	}
+	.featured-body {
+		padding: 1.5em 1.75em;
+	}
+	.featured-label {
+		display: inline-block;
+		font-size: 0.7em;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin-bottom: 0.6em;
+	}
+	.featured-title {
+		font-size: 1.4em;
+		margin: 0 0 0.4em;
+		color: rgb(var(--black));
+		line-height: 1.25;
+		transition: color 0.15s;
+	}
+	.featured-post:hover .featured-title {
+		color: var(--accent);
+	}
+	.featured-description {
+		font-size: 0.95em;
+		color: rgb(var(--gray-dark));
+		margin: 0 0 1.25em;
+		line-height: 1.5;
+	}
+	.featured-cta {
+		font-size: 0.9em;
+		font-weight: 700;
+		color: var(--accent);
+	}
+	.featured-post:hover .featured-cta {
+		color: var(--accent-dark);
+	}
+	/* Horizontal tablet and larger: text left, square image right */
+	@media (min-width: 640px) {
+		.featured-post {
+			display: flex;
+			flex-direction: row;
+			align-items: stretch;
+		}
+		.featured-body {
+			order: -1;
+			flex: 1;
+		}
+		.featured-image {
+			flex: 0 0 220px;
+		}
+		.featured-image img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+</style>

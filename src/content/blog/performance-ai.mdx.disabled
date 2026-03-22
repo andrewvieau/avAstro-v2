@@ -1,0 +1,35 @@
+---
+title: 'Does Performance Even Matter?'
+description: 'AI agents could automate tedious workflow validation tasks in Sitecore, but is the processing overhead worth it? A look at the cost question through the lens of historical technology adoption.'
+pubDate: 2025-12-07
+---
+
+I left Scott Moss' Frontend Masters AI agent workshop with a lot to think about. One thread kept connecting back to the Sitecore workflow series I had just finished: could AI agents replace some of the simpler validation actions that existing platforms handle today?
+
+## The idea
+
+Sitecore workflows support custom actions that fire when an item moves between states. Simple examples: ping someone in Slack when content is approved, or throw an error if required fields are empty.
+
+But what if the action was an AI agent that analyzed the page holistically? Checking for tone consistency, verifying that image alt text is meaningful and not just "image123.jpg", flagging HTML structure errors, catching SEO issues the template validation missed.
+
+All things that a workflow action with an LLM call could do in theory.
+
+## The performance question
+
+Here is the tension. Comparing the processing overhead of a simple rule-based action — check if alt text is non-empty — versus an AI agent doing the same analysis is not a fair comparison. The rule check is microseconds. The agent call is considerably more.
+
+For a content team publishing hundreds of items a day, that overhead multiplies. If every approval fires an agent call, you are adding latency to a process that editors already find slow.
+
+## Does it matter though?
+
+I keep thinking about how every generation has this conversation about resource costs. Storage used to be so expensive that developers wrote elaborate compression routines to save kilobytes. Now I have terabytes on my laptop that I barely think about.
+
+Processing costs follow the same trajectory. The companies building AI infrastructure are spending billions precisely because they believe compute will get dramatically cheaper. If that bet pays out — and historically, this kind of bet has paid out — today's hand-wringing over AI processing costs will look quaint in five years.
+
+The well-funded organizations are already adopting these systems. They are making a bet on the cost curve.
+
+## The open question
+
+What I do not know is whether AI providers will pass cost reductions through to customers, or whether they will maintain pricing and capture the margin. If it is the latter, the processing overhead concern comes back with teeth.
+
+For now, I am optimistic. But I am watching the pricing tables.

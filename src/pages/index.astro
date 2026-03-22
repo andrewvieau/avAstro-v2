@@ -1,0 +1,128 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import FeaturedPost from '../components/FeaturedPost.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const allPosts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const featuredPost = allPosts.find((p) => p.data.featured);
+const posts = allPosts.slice(0, 5);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			.intro {
+				margin: 2em 0 3em;
+			}
+			.intro h1 {
+				margin-bottom: 0.5em;
+			}
+			.intro p {
+				max-width: 520px;
+				color: rgb(var(--gray-dark));
+				margin: 0;
+			}
+			.writing h2 {
+				font-size: 0.78em;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: rgb(var(--gray));
+				font-weight: 700;
+				margin-bottom: 1em;
+			}
+			.post-list {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.post-list li {
+				border-top: 1px solid rgb(var(--gray-light));
+			}
+			.post-list li:last-child {
+				border-bottom: 1px solid rgb(var(--gray-light));
+			}
+			.post-list a {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1.5em;
+				padding: 0.85em 0;
+				text-decoration: none;
+				color: rgb(var(--black));
+			}
+			.post-title {
+				font-size: 1em;
+				font-weight: 700;
+				transition: color 0.15s;
+				flex: 1;
+			}
+			.post-list a:hover .post-title {
+				color: var(--accent);
+			}
+			.post-date {
+				font-size: 0.82em;
+				color: rgb(var(--gray));
+				white-space: nowrap;
+				flex-shrink: 0;
+			}
+			.all-posts-link {
+				display: inline-block;
+				margin-top: 1.25em;
+				font-size: 0.9em;
+				color: var(--accent);
+				font-weight: 700;
+			}
+			.all-posts-link:hover {
+				color: var(--accent-dark);
+			}
+			@media (max-width: 480px) {
+				.post-list a {
+					flex-direction: column;
+					gap: 0.2em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<!--- 
+			<section class="intro">
+				<h1>Andrew Vieau</h1>
+				<p>
+					I'm a technical trainer at Sitecore. I've been in enterprise tech long enough to have
+					worked most of the jobs in the room. I write here about what I'm learning.
+				</p>
+			</section>
+			-->
+			<section class="writing">
+				{featuredPost && <FeaturedPost post={featuredPost} />}
+				<h2>Writing</h2>
+				<ul class="post-list">
+					{
+						posts.map((post) => (
+							<li>
+								<a href={`/blog/${post.id}/`}>
+									<span class="post-title">{post.data.title}</span>
+									<span class="post-date">
+										<FormattedDate date={post.data.pubDate} />
+									</span>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+				<a class="all-posts-link" href="/blog">All posts →</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
