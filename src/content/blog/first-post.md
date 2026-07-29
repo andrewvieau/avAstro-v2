@@ -43,6 +43,6 @@ This is the first post in a three-part series on Sitecore workflows:
 
 - **Part 1** (this post): Overview and foundational concepts
 - **Part 2**: [Automating workflow for datasource components](/blog/second-post/)
-- **Part 3**: [Modifying workflow states programmatically via code and GraphQL](/blog/third-post/)
+- **Part 3**: [Modifying workflow states programmatically via code and GraphQL](/blog/workflow3/)
 
 If you are starting from scratch, deploy Basic Workflow first, get your team used to the approval step, and then layer on automation and API control from there.

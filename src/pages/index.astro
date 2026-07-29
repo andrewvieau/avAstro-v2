@@ -18,6 +18,25 @@ const posts = allPosts.slice(0, 5);
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<script type="application/ld+json" set:html={JSON.stringify([
+			{
+				'@context': 'https://schema.org',
+				'@type': 'WebSite',
+				name: SITE_TITLE,
+				url: Astro.site?.toString(),
+				description: SITE_DESCRIPTION,
+			},
+			{
+				'@context': 'https://schema.org',
+				'@type': 'Person',
+				name: 'Andrew Vieau',
+				url: Astro.site?.toString(),
+				jobTitle: 'Technical Trainer',
+				worksFor: { '@type': 'Organization', name: 'Sitecore' },
+				description: SITE_DESCRIPTION,
+				sameAs: ['https://www.linkedin.com/in/andrewvieau/', 'https://github.com/andrewvieau'],
+			},
+		])} />
 		<style>
 			.intro {
 				margin: 2em 0 3em;

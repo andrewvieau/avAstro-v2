@@ -11,6 +11,17 @@ import Header from '../components/Header.astro';
 			title="About — Andrew Vieau"
 			description="I'm a technical trainer & sales engineer based in Big Lake, Minnesota."
 		/>
+		<script type="application/ld+json" set:html={JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'Person',
+			name: 'Andrew Vieau',
+			url: Astro.site?.toString(),
+			jobTitle: 'Technical Trainer',
+			worksFor: { '@type': 'Organization', name: 'Sitecore' },
+			description: "Enterprise Technology Generalist and full-stack developer with a decade in pre-sales and customer education. Technical trainer at Sitecore.",
+			knowsAbout: ['Sitecore', 'Content Management Systems', 'Workflow Automation', 'Digital Experience Platforms', 'Technical Training'],
+			sameAs: ['https://www.linkedin.com/in/andrewvieau/', 'https://github.com/andrewvieau'],
+		})} />
 	</head>
 	<body>
 		<Header />

@@ -38,4 +38,4 @@ Content authors do not need to know any of this is happening. They approve the p
 
 The Datasource Workflow Action is available across Sitecore XM, XP, and XM Cloud. If you are on an older platform, check the Sitecore documentation for version-specific configuration details.
 
-Next up: [Part 3](/blog/third-post/) covers how to change workflow states programmatically when you need more control than the out-of-box actions provide.
+Next up: [Part 3](/blog/workflow3/) covers how to change workflow states programmatically when you need more control than the out-of-box actions provide.
